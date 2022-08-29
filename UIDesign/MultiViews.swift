@@ -10,7 +10,8 @@ import UIKit
 class CustomView : UIView{
     
     
-    var countOfQuestions: [Int] = [24,4,24,24,24]
+    var countOfQuestions: [Int] = [20,20,20,20,20]
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         createUIDesign()
@@ -21,33 +22,33 @@ class CustomView : UIView{
     }
     private func createUIDesign()
     {
-        let firstView  = creatingViews(.systemGreen,CGFloat(countOfQuestions[0]) * 4.0, 15)
+        let firstView  = creatingViews(.systemGreen,CGFloat(countOfQuestions[0]) * 3.0, 15)
         firstView.layer.maskedCorners = [ .layerMinXMaxYCorner, .layerMinXMinYCorner]
         firstView.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
         
-        let secondView = creatingViews(.systemOrange,CGFloat(countOfQuestions[2]) * 4.0, 0)
+        let secondView = creatingViews(.systemOrange,CGFloat(countOfQuestions[2]) * 3.0, 0)
         secondView.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         
         
-        let thirdView = creatingViews(.systemCyan,CGFloat(countOfQuestions[3]) * 4.0 , 0)
+        let thirdView = creatingViews(.systemCyan,CGFloat(countOfQuestions[3]) * 3.0 , 0)
         thirdView.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         
         
-        let fourthView = creatingViews(.systemYellow, CGFloat(countOfQuestions[4]) * 4.0, 0)
+        let fourthView = creatingViews(.systemYellow, CGFloat(countOfQuestions[4]) * 3.0, 0)
         fourthView.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
-        if CGFloat(countOfQuestions[1]) * 4.0 ==  0
+        if CGFloat(countOfQuestions[1]) * 3.0 ==  0
         {
             fourthView.layer.cornerRadius =  15
             fourthView.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         }
-        if CGFloat(countOfQuestions[1]) * 4.0 ==  4
+        if CGFloat(countOfQuestions[1]) * 3.0 ==  4
         {
             fourthView.layer.cornerRadius =  4
             fourthView.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         }
         
         
-        let fifthView = creatingViews(.systemRed, CGFloat(countOfQuestions[1]) * 4.0, 14)
+        let fifthView = creatingViews(.systemRed, CGFloat(countOfQuestions[1]) * 3.0, 14)
         fifthView.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         fifthView.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         
@@ -64,10 +65,10 @@ class CustomView : UIView{
         
         stackview.translatesAutoresizingMaskIntoConstraints = false
         
-        stackview.trailingAnchor.constraint(equalTo: trailingAnchor).isActive =  true
-        stackview.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        
         stackview.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         stackview.heightAnchor.constraint(equalToConstant: 50).isActive =  true
+        stackview.widthAnchor.constraint(equalToConstant: 300).isActive = true
         
     }
     func creatingViews(_ color : UIColor , _ width : CGFloat,_ radius : CGFloat) -> UIView

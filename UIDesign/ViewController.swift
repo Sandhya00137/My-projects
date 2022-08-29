@@ -8,20 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-
-    let canvas = CustomView()
+    
+    let mainView = CustomView()
+    
     var collectionview: UICollectionView!
+    
     var cellId = "Cell"
+    
     var ArrayOfQuestions = ["Correct Answers","Incorrect Answers","Skipped Visited " ,"Partially Correct","Skipped Not Visited",]
     var arrayOfColors : [UIColor] = [.systemGreen ,.systemRed,.systemOrange ,.systemCyan , .systemYellow]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(canvas)
-        canvas.backgroundColor = .clear
-        canvas.frame = CGRect(x: 7, y: 80, width: view.frame.size.width - 14, height: view.frame.size.height - 600)
-       collectionView()
-       
+        view.addSubview(mainView)
+        mainView.backgroundColor = .clear
+        mainView.frame = CGRect(x: 50, y: 80, width: view.frame.size.width - 10, height: view.frame.size.height - 600)
+        collectionView()
+        
     }
     func collectionView()
     {
@@ -30,7 +33,7 @@ class ViewController: UIViewController ,UICollectionViewDelegate,UICollectionVie
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.itemSize = CGSize(width: (view.frame.size.width/2) - 10  , height: (view.frame.size.width/9) )
-
+        
         collectionview = UICollectionView(frame: CGRect(x: 10, y: 300, width: view.frame.size.width - 14, height: 300),collectionViewLayout: layout)
         collectionview.dataSource = self
         collectionview.delegate = self
@@ -40,17 +43,17 @@ class ViewController: UIViewController ,UICollectionViewDelegate,UICollectionVie
         view.addSubview(collectionview)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return ArrayOfQuestions.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath as IndexPath) as! CollectionViewCell
         cell.contentView.backgroundColor = .clear
-        cell.configure(label: canvas.countOfQuestions[indexPath.row].description)
+        cell.configure(label: mainView.countOfQuestions[indexPath.row].description)
         cell.configuringLabel(label: ArrayOfQuestions[indexPath.row])
         cell.configureColor(color: arrayOfColors[indexPath.row])
         return cell
     }
-
-
+    
+    
 }
 
